@@ -1,12 +1,21 @@
-import React, { useCallback } from "react";
+import React, { useState, useEffect } from "react";
 
-const Button = ({ eventEmitter, homepage }) => {
-    const onClick = useCallback(() => {
-        eventEmitter.publish('location', homepage);
-    }, [eventEmitter, homepage]);
+const Button = ({ eventEmitter }) => {
+    const [venue, setVenue] = useState(null);
+
+    useEffect(() => {
+        const listeners = [
+            eventEmitter.subscribe('core.venue', setVenue),
+        ]
+        return () => {
+            listeners.forEach(unsubscribe => {
+                unsubscribe()
+            });
+        }
+    }, []);
 
     return (
-        <button onClick={onClick}>Open Demos!</button>
+        <button onClick={() => alert('Hello ' + venue.name)}>Open Demos!</button>
     );
 }
 
