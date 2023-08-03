@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Open Demos",
+        "url": "http://localhost:3004/remoteEntry.js",
+        "scope": "opendemos",
+        "namespaces": [
+            "host.agenda.header.widgets",
+            "host.appointment-window.widgets",
+            "remote.homepage.$.opendemos"
+        ]
+    }
+]
