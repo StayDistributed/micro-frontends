@@ -5,7 +5,11 @@ const Button = ({ eventEmitter }) => {
 
     useEffect(() => {
         const listeners = [
-            eventEmitter.subscribe('core.venue', setVenue),
+            eventEmitter.listen('storage', event => {
+                if (event.key === 'venue') {
+                    setVenue(event.value)
+                }
+            }),
         ]
         return () => {
             listeners.forEach(unsubscribe => {
@@ -15,7 +19,7 @@ const Button = ({ eventEmitter }) => {
     }, []);
 
     return (
-        <button onClick={() => alert('Hello ' + venue.name)}>Open Demos!</button>
+        <button onClick={() => alert('Hello ' + venue.name)}>Hello World!</button>
     );
 }
 

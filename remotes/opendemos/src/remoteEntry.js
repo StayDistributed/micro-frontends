@@ -2,7 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import Button from "./components/Button";
 import Homepage from "./components/Homepage";
-import AppointmentWidget from "./components/AppointmentWidget";
 
 export const registerRemote = (register) => {
     register({
@@ -20,10 +19,10 @@ export const registerRemote = (register) => {
         }
     })
     register({
-        namespace: 'host.appointment-window.widgets',
+        namespace: 'remote.homepage.header.widgets.$.opendemos',
         order: 10,
-        render: ({ payload, rootNode }) => {
-            createRoot(rootNode).render(<AppointmentWidget payload={payload} />);
+        render: ({ eventEmitter, homepage, rootNode }) => {
+            createRoot(rootNode).render(<Button eventEmitter={eventEmitter} homepage={homepage} />);
         }
     })
 }
