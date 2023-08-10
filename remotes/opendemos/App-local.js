@@ -9,12 +9,12 @@ import AppointmentWidget from "./src/components/AppointmentWidget";
 // This file is for local development,
 // It injects the Remote component providing a mocked version of the store
 console.info('%cDevelopment version of ' + remoteMetadata.name + '@' + remoteMetadata.version, "color: blue; font-family:sans-serif; font-size: 20px");
-console.info('%cSee doc: https://github.com/StayDistributed/micro-frontends', "color: blue; font-family:sans-serif; font-size: 14px");
+console.info('%cSee doc: https://github.com/StayDistributed/module-federation', "color: blue; font-family:sans-serif; font-size: 14px");
 
 const store = createStore({
-    "core.user": { email: "email@sample.com" },
-    "core.venue": { name: "Open Demo Venue" },
-    "core.locale": "en",
+    "user": { email: "email@sample.com" },
+    "venue": { name: "Open Demo Venue" },
+    "locale": "en",
 });
 const eventEmitter = createEventEmitter(store);
 
