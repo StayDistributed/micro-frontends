@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Button = ({ eventEmitter }) => {
+const Button = ({ eventEmitter, homepage }) => {
     const [venue, setVenue] = useState(null);
 
     useEffect(() => {
@@ -10,6 +10,9 @@ const Button = ({ eventEmitter }) => {
                     setVenue(event.value)
                 }
             }),
+            eventEmitter.listen('unmount', event => {
+                console.log('Button - unmounted', event);
+            })
         ]
         return () => {
             listeners.forEach(unsubscribe => {
@@ -19,7 +22,7 @@ const Button = ({ eventEmitter }) => {
     }, []);
 
     return (
-        <button onClick={() => alert('Hello ' + venue.name)}>Hello World!</button>
+        <button onClick={() => eventEmitter.emit('location', homepage)}>Hello World!</button>
     );
 }
 
